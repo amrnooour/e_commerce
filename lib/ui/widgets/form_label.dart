@@ -7,12 +7,6 @@ class FormLabelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: Theme
-          .of(context)
-          .textTheme
-          .bodySmall,
-    );
+    return Text(label, style: Theme.of(context).textTheme.bodySmall,);
   }
 }

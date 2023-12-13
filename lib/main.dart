@@ -1,5 +1,5 @@
-import 'package:e_commerce/ui/screens/auth/login_screen.dart';
-import 'package:e_commerce/ui/screens/auth/register_screen.dart';
+import 'package:e_commerce/ui/screens/auth/login/login_screen.dart';
+import 'package:e_commerce/ui/screens/auth/register/register_screen.dart';
 import 'package:e_commerce/ui/screens/home_screen.dart';
 import 'package:e_commerce/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';

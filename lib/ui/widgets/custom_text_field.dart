@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class CustomTextFormField extends StatelessWidget {
   String hintText;
   bool isPassword;
-  late TextEditingController? controller;
+  TextEditingController controller;
   String? Function(String?)? validator;
   TextInputType type;
 
   CustomTextFormField({
     required this.hintText,
     this.isPassword = false,
-    this.controller,
+    required this.controller,
     required this.validator,
     required this.type,
   });
