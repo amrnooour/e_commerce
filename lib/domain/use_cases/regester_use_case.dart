@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce/data/model/failures.dart';
 import 'package:e_commerce/data/model/request/RegesterRequestBody.dart';
 import 'package:e_commerce/domain/repos/auth_repo/auth_repo.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class RegisterUseCase{
   AuthRepo repo;
   RegisterUseCase(this.repo);

@@ -1,7 +1,10 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_commerce/data/repos/auth_repos/auth_repos.impl.dart';
+import 'package:e_commerce/domain/di/di.dart';
 import 'package:e_commerce/domain/use_cases/Login_use_case.dart';
 import 'package:e_commerce/ui/screens/auth/login/login_view_model.dart';
 import 'package:e_commerce/ui/screens/auth/register/register_screen.dart';
+import 'package:e_commerce/ui/screens/home_screen.dart';
 import 'package:e_commerce/ui/utils/app_assets.dart';
 import 'package:e_commerce/ui/utils/base_states.dart';
 import 'package:e_commerce/ui/utils/dialog_utils.dart';
@@ -19,7 +22,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  LoginViewModel loginViewModel = LoginViewModel(LoginUseCase(AuthRepoImpl()));
+  LoginViewModel loginViewModel = getIt();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,10 +146,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         listener: (context,state){
           if(state is BaseLoadingState){
+            print("Loading");
             showLoading(context);
           }else if(state is BaseSuccessState){
             Navigator.pop(context);
+            Navigator.pushNamed(context, HomeScreen.routeName);
+            print("Success");
           }else if(state is BaseErrorState){
+            print("Error");
             Navigator.pop(context);
             showErrorDialog(context, state.errorMessage);
           }

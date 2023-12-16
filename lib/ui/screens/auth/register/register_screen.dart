@@ -1,6 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_commerce/data/repos/auth_repos/auth_repos.impl.dart';
+import 'package:e_commerce/domain/di/di.dart';
 import 'package:e_commerce/domain/use_cases/regester_use_case.dart';
 import 'package:e_commerce/ui/screens/auth/register/register_view_model.dart';
+import 'package:e_commerce/ui/screens/home_screen.dart';
 import 'package:e_commerce/ui/utils/app_assets.dart';
 import 'package:e_commerce/ui/utils/base_states.dart';
 import 'package:e_commerce/ui/utils/dialog_utils.dart';
@@ -12,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const routeName ="registerScreen";
-  RegisterViewModel registerViewModel = RegisterViewModel(RegisterUseCase(AuthRepoImpl()));
+  RegisterViewModel registerViewModel = getIt();
 
 
   @override
@@ -27,6 +30,7 @@ class RegisterScreen extends StatelessWidget {
           showErrorDialog(context, state.errorMessage);
         }else if(state is BaseSuccessState){
           hideLoading(context);
+          Navigator.pushNamed(context, HomeScreen.routeName);
         }
       },
       child: Scaffold(
@@ -46,6 +50,7 @@ class RegisterScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
+                    key: registerViewModel.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -54,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 24,
                         ),
                         CustomTextFormField(
-                          controller: registerViewModel.nameController,
+                            controller: registerViewModel.nameController,
                             hintText: 'enter your full name',
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
@@ -71,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 24,
                         ),
                         CustomTextFormField(
-                          controller: registerViewModel.emailController,
+                            controller: registerViewModel.emailController,
                             hintText: 'enter your email address',
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
@@ -95,7 +100,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 24,
                         ),
                         CustomTextFormField(
-                          controller: registerViewModel.phoneController,
+                            controller: registerViewModel.phoneController,
                             hintText: 'enter your mobile number',
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {

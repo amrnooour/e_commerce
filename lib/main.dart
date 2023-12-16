@@ -4,7 +4,10 @@ import 'package:e_commerce/ui/screens/home_screen.dart';
 import 'package:e_commerce/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'domain/di/di.dart';
+
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
