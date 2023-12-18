@@ -4,7 +4,7 @@ import 'package:e_commerce/domain/di/di.dart';
 import 'package:e_commerce/domain/use_cases/Login_use_case.dart';
 import 'package:e_commerce/ui/screens/auth/login/login_view_model.dart';
 import 'package:e_commerce/ui/screens/auth/register/register_screen.dart';
-import 'package:e_commerce/ui/screens/home_screen.dart';
+import 'package:e_commerce/ui/screens/main/main_screen.dart';
 import 'package:e_commerce/ui/utils/app_assets.dart';
 import 'package:e_commerce/ui/utils/base_states.dart';
 import 'package:e_commerce/ui/utils/dialog_utils.dart';
@@ -145,17 +145,17 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         listener: (context,state){
-          if(state is BaseLoadingState){
+          if(state is BaseRequestLoadingState){
             print("Loading");
             showLoading(context);
-          }else if(state is BaseSuccessState){
+          }else if(state is BaseRequestSuccessState){
             Navigator.pop(context);
-            Navigator.pushNamed(context, HomeScreen.routeName);
+            Navigator.pushNamed(context, Main.routeName);
             print("Success");
-          }else if(state is BaseErrorState){
+          }else if(state is BaseRequestErrorState){
             print("Error");
             Navigator.pop(context);
-            showErrorDialog(context, state.errorMessage);
+            showErrorDialog(context, state.message);
           }
         },
       ),

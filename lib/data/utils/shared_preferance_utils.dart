@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:e_commerce/data/model/response/AuthResponse.dart';
+import 'package:e_commerce/data/model/response/auth_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

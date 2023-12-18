@@ -1,7 +1,18 @@
-class BaseInitialState{}
-class BaseLoadingState{}
-class BaseErrorState{
-  String errorMessage;
-  BaseErrorState(this.errorMessage);
+
+abstract class BaseRequestStates {}
+
+class BaseRequestInitialState extends BaseRequestStates {}
+
+class BaseRequestLoadingState extends BaseRequestStates {}
+
+class BaseRequestSuccessState<DataType> extends BaseRequestStates {
+  DataType? data;
+
+  BaseRequestSuccessState({this.data});
 }
-class BaseSuccessState{}
+
+class BaseRequestErrorState extends BaseRequestStates {
+  String message;
+
+  BaseRequestErrorState(this.message);
+}

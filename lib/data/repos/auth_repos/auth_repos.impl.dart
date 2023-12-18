@@ -3,7 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/data/model/failures.dart';
 import 'package:e_commerce/data/model/request/RegesterRequestBody.dart';
-import 'package:e_commerce/data/model/response/AuthResponse.dart';
+import 'package:e_commerce/data/model/response/auth_response.dart';
 import 'package:e_commerce/data/utils/shared_preferance_utils.dart';
 import 'package:e_commerce/domain/repos/auth_repo/auth_repo.dart';
 import 'package:e_commerce/ui/utils/constants.dart';

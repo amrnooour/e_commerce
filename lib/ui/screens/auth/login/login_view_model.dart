@@ -12,19 +12,19 @@ class LoginViewModel extends Cubit{
   TextEditingController emailController =TextEditingController();
   TextEditingController passwordController =TextEditingController();
   LoginUseCase loginUseCase;
-  LoginViewModel(this.loginUseCase) :super(BaseInitialState());
+  LoginViewModel(this.loginUseCase) :super(BaseRequestInitialState());
 
   void login() async{
     if(!formKey.currentState!.validate()) return;
-    emit(BaseLoadingState());
+    emit(BaseRequestLoadingState());
     loginUseCase.email = emailController.text;
     loginUseCase.password = passwordController.text;
     Either<Failure,bool> response =
     await loginUseCase.execute();
     response.fold((error) {
-      emit(BaseErrorState(error.errorMessage));
+      emit(BaseRequestErrorState(error.errorMessage));
     }, (success) {
-      emit(BaseSuccessState());
+      emit(BaseRequestSuccessState());
     });
   }
 

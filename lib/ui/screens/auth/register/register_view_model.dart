@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 class RegisterViewModel extends Cubit{
   RegisterUseCase useCase;
 
-  RegisterViewModel(this.useCase) : super(BaseInitialState());
+  RegisterViewModel(this.useCase) : super(BaseRequestInitialState());
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -21,7 +21,7 @@ class RegisterViewModel extends Cubit{
 
   register() async {
     if (!formKey.currentState!.validate()) return;
-    emit(BaseLoadingState());
+    emit(BaseRequestLoadingState());
     Either<Failure, bool> eitherResponse = await useCase.execute(
         RegesterRequestBody(
             email: emailController.text,
@@ -29,7 +29,7 @@ class RegisterViewModel extends Cubit{
             password: passwordController.text,
             rePassword: rePasswordController.text,
             phone: phoneController.text));
-    eitherResponse.fold((error) => emit(BaseErrorState(error.errorMessage)),
-            (r) => emit(BaseSuccessState()));
+    eitherResponse.fold((error) => emit(BaseRequestErrorState(error.errorMessage)),
+            (r) => emit(BaseRequestSuccessState()));
   }
 }

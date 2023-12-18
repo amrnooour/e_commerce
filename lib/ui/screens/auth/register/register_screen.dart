@@ -3,7 +3,7 @@ import 'package:e_commerce/data/repos/auth_repos/auth_repos.impl.dart';
 import 'package:e_commerce/domain/di/di.dart';
 import 'package:e_commerce/domain/use_cases/regester_use_case.dart';
 import 'package:e_commerce/ui/screens/auth/register/register_view_model.dart';
-import 'package:e_commerce/ui/screens/home_screen.dart';
+import 'package:e_commerce/ui/screens/main/main_screen.dart';
 import 'package:e_commerce/ui/utils/app_assets.dart';
 import 'package:e_commerce/ui/utils/base_states.dart';
 import 'package:e_commerce/ui/utils/dialog_utils.dart';
@@ -23,14 +23,14 @@ class RegisterScreen extends StatelessWidget {
     return BlocListener(
       bloc: registerViewModel,
       listener: (context,state){
-        if(state is BaseLoadingState){
+        if(state is BaseRequestLoadingState){
           showLoading(context);
-        }else if(state is BaseErrorState){
+        }else if(state is BaseRequestErrorState){
           hideLoading(context);
-          showErrorDialog(context, state.errorMessage);
-        }else if(state is BaseSuccessState){
+          showErrorDialog(context, state.message);
+        }else if(state is BaseRequestSuccessState){
           hideLoading(context);
-          Navigator.pushNamed(context, HomeScreen.routeName);
+          Navigator.pushNamed(context, Main.routeName);
         }
       },
       child: Scaffold(
